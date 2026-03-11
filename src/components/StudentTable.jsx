@@ -58,14 +58,14 @@ export default function StudentTable({ students, loading, onEdit, onDelete }) {
         <tbody>
           {students.map((student, idx) => (
             <tr key={student.id}>
-              <td className="cell-index">{idx + 1}</td>
-              <td className="cell-name">
+              <td className="cell-index" data-label="#">{idx + 1}</td>
+              <td className="cell-name" data-label="Name">
                 <div className="avatar">{student.name.charAt(0)}</div>
                 {student.name}
               </td>
-              <td className="cell-email">{student.email}</td>
-              <td className="cell-age">{student.age}</td>
-              <td className="cell-actions">
+              <td className="cell-email" data-label="Email">{student.email}</td>
+              <td className="cell-age" data-label="Age">{student.age}</td>
+              <td className="cell-actions" data-label="Actions">
                 <button
                   className="btn-icon btn-edit"
                   title="Edit"

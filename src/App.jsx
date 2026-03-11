@@ -20,14 +20,22 @@ export default function App() {
   const [deleteTarget, setDeleteTarget] = useState(null)
   const [searchTerm, setSearchTerm] = useState('')
 
-  // Simulated loading state
+  // Load from localStorage or use initial data
   useEffect(() => {
     const timer = setTimeout(() => {
-      setStudents(initialStudents)
+      const saved = localStorage.getItem('students')
+      setStudents(saved ? JSON.parse(saved) : initialStudents)
       setLoading(false)
     }, 1200)
     return () => clearTimeout(timer)
   }, [])
+
+  // Persist to localStorage whenever students change
+  useEffect(() => {
+    if (!loading) {
+      localStorage.setItem('students', JSON.stringify(students))
+    }
+  }, [students, loading])
 
   const filteredStudents = students.filter(
     (s) =>
